@@ -4,7 +4,7 @@ import sbtrelease.ReleasePlugin.autoImport.releaseStepCommand
 lazy val commonSettings = Seq(
   organization := "com.kjetland",
   organizationName := "mbknor",
-  scalaVersion := "2.12.4",
+  scalaVersion := "2.13.12",
   crossScalaVersions := Seq("2.11.12", "2.12.13", "2.13.4"),
   publishMavenStyle := true,
   publishArtifact in Test := false,
@@ -54,7 +54,7 @@ val slf4jVersion = "1.7.26"
 
 lazy val deps  = Seq(
   "com.fasterxml.jackson.core" % "jackson-databind" % jacksonVersion,
-  "javax.validation" % "validation-api" % "2.0.1.Final",
+  "jakarta.validation" % "jakarta.validation-api" % "3.0.2",
   "org.slf4j" % "slf4j-api" % slf4jVersion,
   "io.github.classgraph" % "classgraph" % "4.8.21",
   "org.scalatest" %% "scalatest" % "3.0.8" % "test",

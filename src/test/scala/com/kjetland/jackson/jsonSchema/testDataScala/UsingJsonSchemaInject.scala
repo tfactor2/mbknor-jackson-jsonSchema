@@ -1,7 +1,7 @@
 package com.kjetland.jackson.jsonSchema.testDataScala
 
 import java.util.function.Supplier
-import javax.validation.constraints.{Min, Pattern}
+import jakarta.validation.constraints.{Min, Pattern}
 
 import com.fasterxml.jackson.databind.{JsonNode, ObjectMapper}
 import com.fasterxml.jackson.databind.node.{ArrayNode, ObjectNode}

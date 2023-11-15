@@ -2,14 +2,14 @@ package com.kjetland.jackson.jsonSchema.testData;
 
 import com.kjetland.jackson.jsonSchema.testDataScala.ClassUsingValidation;
 
-import javax.validation.constraints.*;
+import jakarta.validation.constraints.*;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
 /**
- * Provides a test POJO with javax.validation annotations on it. This is the Java equivalent of
+ * Provides a test POJO with jakarta.validation annotations on it. This is the Java equivalent of
  * {@link ClassUsingValidation}, and it exists because certain types are used differently between Scala and Java.
  *
  * @see ClassUsingValidation

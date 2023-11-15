@@ -16,8 +16,8 @@ import com.fasterxml.jackson.databind.node.{ArrayNode, JsonNodeFactory, ObjectNo
 import com.fasterxml.jackson.databind.util.ClassUtil
 import com.kjetland.jackson.jsonSchema.annotations._
 import io.github.classgraph.{ClassGraph, ScanResult}
-import javax.validation.constraints._
-import javax.validation.groups.Default
+import jakarta.validation.constraints._
+import jakarta.validation.groups.Default
 import org.slf4j.LoggerFactory
 
 object JsonSchemaGenerator {
@@ -244,7 +244,7 @@ case class JsonSchemaConfig
   jsonSuppliers:Map[String, Supplier[JsonNode]], // Suppliers in this map can be accessed using @JsonSchemaInject(jsonSupplierViaLookup = "lookupKey")
   subclassesResolver:SubclassesResolver = new SubclassesResolverImpl(), // Using default impl that scans entire classpath
   failOnUnknownProperties:Boolean = true,
-  javaxValidationGroups:Array[Class[_]] = Array(), // Used to match against different validation-groups (javax.validation.constraints)
+  javaxValidationGroups:Array[Class[_]] = Array(), // Used to match against different validation-groups (jakarta.validation.constraints)
   jsonSchemaDraft:JsonSchemaDraft = JsonSchemaDraft.DRAFT_04
 ) {
 
@@ -338,7 +338,7 @@ class JsonSchemaGenerator
       // javax-annotation... To prevent bugs with missing groups-extract-impl when new
       // validation-annotations are added, I've decided to do it using reflection
       val annotationClass = annotation.annotationType()
-      if ( annotationClass.getPackage.getName().startsWith("javax.validation.constraints") ) {
+      if ( annotationClass.getPackage.getName().startsWith("jakarta.validation.constraints") ) {
         val groupsMethod = try {
           annotationClass.getMethod("groups")
         } catch {
@@ -590,7 +590,7 @@ class JsonSchemaGenerator
               if (config.useMinLengthForNotNull && (selectAnnotation(p, classOf[NotNull]).isDefined)) {
                 Option(MinAndMaxLength(Some(1), None))
               }
-              // Other javax.validation annotations that require a length.
+              // Other jakarta.validation annotations that require a length.
               else if (selectAnnotation(p, classOf[NotBlank]).isDefined || selectAnnotation(p, classOf[NotEmpty]).isDefined) {
                 Option(MinAndMaxLength(Some(1), None))
               }
@@ -1124,7 +1124,7 @@ class JsonSchemaGenerator
                   case class PropertyNode(main: ObjectNode, meta: ObjectNode)
 
                   // Check if we should set this property as required. Primitive types MUST have a value, as does anything
-                  // with a @JsonProperty that has "required" set to true. Lastly, various javax.validation annotations also
+                  // with a @JsonProperty that has "required" set to true. Lastly, various jakarta.validation annotations also
                   // make this required.
                   val requiredProperty: Boolean = if (propertyType.getRawClass.isPrimitive || jsonPropertyRequired || validationAnnotationRequired(prop)) {
                     true
@@ -1282,7 +1282,7 @@ class JsonSchemaGenerator
                   myPropertyHandler(name, propertyTypeHint, None, jsonPropertyRequired = true)
                 }
 
-                // Checks to see if a javax.validation field that makes our field required is present.
+                // Checks to see if a jakarta.validation field that makes our field required is present.
                 private def validationAnnotationRequired(prop: Option[BeanProperty]): Boolean = {
                   prop.exists(p => selectAnnotation(p, classOf[NotNull]).isDefined || selectAnnotation(p, classOf[NotBlank]).isDefined || selectAnnotation(p, classOf[NotEmpty]).isDefined)
                 }

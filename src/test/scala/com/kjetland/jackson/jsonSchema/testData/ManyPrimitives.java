@@ -1,6 +1,6 @@
 package com.kjetland.jackson.jsonSchema.testData;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 public class ManyPrimitives {
     public String _string;

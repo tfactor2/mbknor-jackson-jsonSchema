@@ -1,9 +1,9 @@
 package com.kjetland.jackson.jsonSchema.testData;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 /**
- * Provides our tests with a simple class: a single field with a {@link javax.validation.constraints.NotNull} annotation
+ * Provides our tests with a simple class: a single field with a {@link jakarta.validation.constraints.NotNull} annotation
  * set upon a type that is, theoretically nullable.
  * <p>
  * The compiler should allow us to do this, but the schema should then fail to validate.

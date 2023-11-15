@@ -26,7 +26,7 @@ import com.kjetland.jackson.jsonSchema.testData.polymorphism5.{Child51, Child52,
 import com.kjetland.jackson.jsonSchema.testData.polymorphism6.{Child61, Parent6}
 import com.kjetland.jackson.jsonSchema.testDataScala._
 import com.kjetland.jackson.jsonSchema.testData_issue_24.EntityWrapper
-import javax.validation.groups.Default
+import jakarta.validation.groups.Default
 import org.scalatest.{FunSuite, Matchers}
 
 import scala.collection.JavaConverters._

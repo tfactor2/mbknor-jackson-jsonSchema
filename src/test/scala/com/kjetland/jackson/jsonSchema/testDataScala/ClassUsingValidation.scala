@@ -1,8 +1,8 @@
 package com.kjetland.jackson.jsonSchema.testDataScala
 
 import com.kjetland.jackson.jsonSchema.annotations.JsonSchemaInject
-import javax.validation.constraints._
-import javax.validation.groups.Default
+import jakarta.validation.constraints._
+import jakarta.validation.groups.Default
 
 case class ClassUsingValidation
 (
